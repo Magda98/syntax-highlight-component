@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/src/assets/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + Lit + TS</title>
+    <link rel="stylesheet" href="./src/index.css" />
+    <script type="module" src="/src/syntax-highlight-component.js"></script>
+  </head>
+  <body>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+      "
+    >
+      <h1>Syntax Highlight Component</h1>
+      <div
+        style="
+          padding: 16px 8px;
+          border-radius: 16px;
+          background-color: #3b3b3b;
+        "
+      >
+        <syntax-highlight-component language="css">
+          background: linear-gradient(200deg, #9d39e5, #dc454b, #ff1493);
+          background-clip: text; -webkit-text-fill-color: transparent;
+        </syntax-highlight-component>
+      </div>
+    </div>
+  </body>
+</html>
