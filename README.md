@@ -1,5 +1,7 @@
 # Syntax Highlighting Component
 
+[![NPM Version](https://img.shields.io/npm/v/syntax-highlight-component?style=for-the-badge&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fsyntax-highlight-component)](https://www.npmjs.com/package/syntax-highlight-component)
+
 ✨ **Syntax Highlighting Component** is a customizable web component that makes your code snippets look beautiful and readable! 🚀
 
 - Built with [Lit](https://lit.dev/) for fast and lightweight performance ⚡
@@ -20,4 +22,4 @@ To use the component, import it in your HTML file and use the `<syntax-highlight
 </syntax-highlight-component>
 ```
 
-![code highlight example](docs/image.png)
+![code highlight example](https://github.com/Magda98/syntax-highlight-component/blob/master/docs/image.png)
