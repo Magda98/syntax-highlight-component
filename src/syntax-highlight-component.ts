@@ -1,32 +1,36 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
 import { configDefaults, type Config } from './config';
-import { NAMESPACE } from './constants';
 import { setupTokenHighlights } from './utils';
 
-if (!CSS.highlights) {
-  console.info(
-    'The CSS Custom Highlight API is not supported in this browser.',
-  );
-} else {
-  const globalConfig = Object.assign(
-    configDefaults,
-    window[NAMESPACE]?.config || {},
-  );
-  if (typeof globalConfig.setup === 'function') {
-    (async () => await globalConfig.setup())();
-  }
-  setupTokenHighlights(globalConfig.tokenTypes, {
-    languageTokens: globalConfig.languageTokens,
-  });
-}
-
+/**
+ * A web component for syntax highlighting code blocks using the CSS Custom Highlight API.
+ *
+ * @remarks
+ * This component leverages the Lit library and the CSS Custom Highlight API to provide
+ * customizable syntax highlighting for code snippets. It supports dynamic configuration,
+ * custom token types, and language-specific tokenization.
+ *
+ * @example
+ * ```html
+ * <syntax-highlight-component language="javascript">
+ *   const x = 42;
+ * </syntax-highlight-component>
+ * ```
+ *
+ * @slot - Default slot for code content to be highlighted.
+ * @property {string} language - The programming language to use for syntax highlighting.
+ * @property {string} contentSelector - Optional selector for the element containing the code to highlight.
+ */
 @customElement('syntax-highlight-component')
 export default class SyntaxHighlightComponent extends LitElement {
-  private static _config: Config = Object.assign(
-    configDefaults,
-    window[NAMESPACE]?.config || {},
-  );
+  @property({ type: String })
+  language = 'plaintext';
+
+  @property({ type: String, attribute: 'content-selector' })
+  contentSelector?: string;
+
+  private static _config: Config = configDefaults;
 
   static get config() {
     return SyntaxHighlightComponent._config;
@@ -39,28 +43,25 @@ export default class SyntaxHighlightComponent extends LitElement {
     );
   }
 
-  @property({ type: String })
-  language = 'plaintext';
-
-  @property({ type: String, attribute: 'content-selector' })
-  contentSelector?: string;
-
   #highlights = new Set<{ tokenType: string; range: Range }>();
   #internals: ElementInternals;
+
+  get highlights() {
+    return this.#highlights;
+  }
 
   constructor() {
     super();
     this.#internals = this.attachInternals();
     this.#internals.role = 'code';
+    setupTokenHighlights(configDefaults.tokenTypes, {
+      languageTokens: configDefaults.languageTokens,
+    });
   }
 
   get contentElement(): HTMLElement {
     if (!this.contentSelector) return this;
     return this.querySelector(this.contentSelector) || this;
-  }
-
-  get highlights() {
-    return this.#highlights;
   }
 
   connectedCallback() {
@@ -143,9 +144,6 @@ export default class SyntaxHighlightComponent extends LitElement {
     return html`<slot @slotchange=${this.paintTokenHighlights}></slot>`;
   }
 
-  /**
-   * Tokenize code and paint the token highlights.
-   */
   paintTokenHighlights() {
     this.clearTokenHighlights();
     if (!CSS.highlights) return;

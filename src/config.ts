@@ -1,9 +1,6 @@
 import type { Token } from 'prismjs';
 import { tokenize, tokenTypes } from './tokenizer/prism';
 
-/**
- * Default configuration object.
- */
 export const configDefaults = {
   languages: ['markup', 'css', 'javascript'],
   tokenTypes,
