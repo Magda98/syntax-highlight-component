@@ -1,6 +1,13 @@
 # Syntax Highlighting Component
 
-This is a web component that provides syntax highlighting for code snippets. It uses Prism.js for tokenizing and highlighting the code.
+✨ **Syntax Highlighting Component** is a customizable web component that makes your code snippets look beautiful and readable! 🚀
+
+- Built with [Lit](https://lit.dev/) for fast and lightweight performance ⚡
+- Uses [Prism.js](https://prismjs.com/) for accurate and colorful syntax highlighting 🎨
+- Easy to use: just drop the component into your HTML and specify the language 📝
+- Perfect for documentation, blogs, and developer portfolios 📚
+
+Give your code blocks a professional touch with minimal effort! 💡
 
 ## Usage
 
@@ -13,6 +20,4 @@ To use the component, import it in your HTML file and use the `<syntax-highlight
 </syntax-highlight-component>
 ```
 
-## License
-
-This project is licensed under the MIT License.
+![code highlight example](docs/image.png)
