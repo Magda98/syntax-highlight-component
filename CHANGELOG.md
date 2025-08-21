@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/Magda98/syntax-highlight-component/compare/v1.0.0...v1.1.0) (2025-08-21)
+
+
+### Features
+
+* add fsharp support ([4dea4ca](https://github.com/Magda98/syntax-highlight-component/commit/4dea4caa705ab820970d1b7fa6600638209062e5))
+
 # 1.0.0 (2025-08-21)
 
 
