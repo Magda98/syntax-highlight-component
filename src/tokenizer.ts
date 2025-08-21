@@ -63,6 +63,8 @@ function getLanguageImport(language: Language) {
       return import('prismjs/components/prism-php');
     case 'fsharp':
       return import('prismjs/components/prism-fsharp');
+    case 'yaml':
+      return import('prismjs/components/prism-yaml');
     default: {
       language satisfies never;
     }
