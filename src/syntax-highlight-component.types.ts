@@ -25,6 +25,7 @@ export type Language =
   | 'java'
   | 'json'
   | 'md'
-  | 'php';
+  | 'php'
+  | 'fsharp';
 
 export type FlatToken = { type: string; content: string; length: number };

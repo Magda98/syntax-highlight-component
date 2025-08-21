@@ -61,6 +61,8 @@ function getLanguageImport(language: Language) {
       return import('prismjs/components/prism-markdown');
     case 'php':
       return import('prismjs/components/prism-php');
+    case 'fsharp':
+      return import('prismjs/components/prism-fsharp');
     default: {
       language satisfies never;
     }
