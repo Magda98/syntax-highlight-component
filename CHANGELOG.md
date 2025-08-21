@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/Magda98/syntax-highlight-component/compare/v1.1.1...v1.2.0) (2025-08-21)
+
+
+### Features
+
+* add yaml support ([435a4f1](https://github.com/Magda98/syntax-highlight-component/commit/435a4f126c382649a0d91924178ba229a98cb9c8))
+
 ## [1.1.1](https://github.com/Magda98/syntax-highlight-component/compare/v1.1.0...v1.1.1) (2025-08-21)
 
 
