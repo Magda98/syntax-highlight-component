@@ -1,5 +1,3 @@
-import type { Token } from 'prismjs';
-
 /**
  * Initializes CSS Custom Highlights for a given set of token types.
  *
@@ -18,7 +16,7 @@ import type { Token } from 'prismjs';
  */
 export function setupTokenHighlights(
   tokenTypes: string[],
-  { languageTokens }: { languageTokens?: { [language: string]: Token[] } },
+  { languageTokens }: { languageTokens?: { [language: string]: string[] } },
 ) {
   for (const tokenType of tokenTypes) {
     CSS.highlights.set(tokenType, new Highlight());

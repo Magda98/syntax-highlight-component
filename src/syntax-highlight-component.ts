@@ -106,7 +106,8 @@ export default class SyntaxHighlightComponent extends LitElement {
       overflow: auto;
       tab-size: 2;
       hyphens: none;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      font-family:
+        ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         'Liberation Mono', 'Courier New', monospace;
       line-height: 1.6;
     }

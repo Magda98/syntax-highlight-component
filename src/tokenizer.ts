@@ -14,7 +14,7 @@ export async function tokenize(
   if (!lang) {
     try {
       await getLanguageImport(language);
-    } catch (error) {
+    } catch {
       console.warn(`Prism language '${language}' not loaded.`);
       return [{ type: 'untyped', content: text, length: text.length }];
     }
@@ -61,9 +61,9 @@ function getLanguageImport(language: Language) {
       return import('prismjs/components/prism-markdown');
     case 'php':
       return import('prismjs/components/prism-php');
-    default:
-      const _exhaustiveCheck: never = language;
-      return _exhaustiveCheck;
+    default: {
+      language satisfies never;
+    }
   }
 }
 

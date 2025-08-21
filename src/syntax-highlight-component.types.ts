@@ -1,10 +1,8 @@
-import type { Token } from 'prismjs';
-
 export type Config = {
   languages: Language[];
   tokenTypes: string[];
-  languageTokens: Record<string, Token[]>;
-  tokenize: (text: string, language: Language) => any;
+  languageTokens: Record<string, string[]>;
+  tokenize: (text: string, language: Language) => Promise<FlatToken[]>;
 };
 
 export type Theme = 'light' | 'dark' | 'pink';
