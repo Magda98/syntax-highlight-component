@@ -16,6 +16,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
+    "prepublishOnly": "npm install && npm run build",
     "build": "tsc && vite build",
     "preview": "vite preview",
     "format": "prettier --write .",
