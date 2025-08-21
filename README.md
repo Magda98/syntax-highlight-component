@@ -16,10 +16,35 @@ Give your code blocks a professional touch with minimal effort! 💡
 To use the component, import it in your HTML file and use the `<syntax-highlight-component>` tag:
 
 ```html
-<syntax-highlight-component language="css">
+<syntax-highlight-component language="css" theme="pink">
   background: linear-gradient(135deg, #9d39e5, #dc454b, #ff1493);
   background-clip: text;
 </syntax-highlight-component>
 ```
+
+The default theme is `light` to set other themes use `theme` attribute and simply pass one one following values: `light` | `dark` | `pink`.
+
+## Supported Languages
+
+The `language` attribute supports the following values:
+
+- `markup`
+- `css`
+- `html`
+- `javascript`
+- `typescript`
+- `python`
+- `ruby`
+- `plaintext`
+- `tsx`
+- `jsx`
+- `csharp`
+- `cpp`
+- `git`
+- `go`
+- `java`
+- `json`
+- `md`
+- `php`
 
 ![code highlight example](https://github.com/Magda98/syntax-highlight-component/blob/master/docs/image.png)

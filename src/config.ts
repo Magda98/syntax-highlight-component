@@ -1,16 +1,9 @@
-import type { Token } from 'prismjs';
-import { tokenize, tokenTypes } from './tokenizer/prism';
+import { tokenize, tokenTypes } from './tokenizer';
+import type { Config } from './syntax-highlight-component.types';
 
-export const configDefaults = {
-  languages: ['markup', 'css', 'javascript'],
+export const configDefaults: Config = {
+  languages: ['markup', 'css', 'html', 'javascript', 'typescript'],
   tokenTypes,
   languageTokens: {},
   tokenize,
-};
-
-export type Config = {
-  languages: string[];
-  tokenTypes: string[];
-  languageTokens: Record<string, Token[]>;
-  tokenize: (text: string, language: string) => any;
 };

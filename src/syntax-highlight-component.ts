@@ -1,7 +1,12 @@
 import { LitElement, css, html } from 'lit';
 import { customElement, property } from 'lit/decorators.js';
-import { configDefaults, type Config } from './config';
-import { setupTokenHighlights } from './utils';
+import {
+  type Config,
+  type Language,
+  type Theme,
+} from './syntax-highlight-component.types';
+import { setupTokenHighlights } from './cssHighlight';
+import { configDefaults } from './config';
 
 /**
  * A web component for syntax highlighting code blocks using the CSS Custom Highlight API.
@@ -24,11 +29,32 @@ import { setupTokenHighlights } from './utils';
  */
 @customElement('syntax-highlight-component')
 export default class SyntaxHighlightComponent extends LitElement {
+  /**
+   * The programming language used for syntax highlighting.
+   * Defaults to 'plaintext' if not set.
+   */
   @property({ type: String })
-  language = 'plaintext';
+  set language(value: Language) {
+    this._language = value;
+
+    if (SyntaxHighlightComponent.config.languages.includes(value)) return;
+    SyntaxHighlightComponent.config = {
+      ...SyntaxHighlightComponent.config,
+      languages: [...SyntaxHighlightComponent.config.languages, value],
+    };
+  }
+
+  private _language: Language = 'plaintext';
+
+  get language(): Language {
+    return this._language;
+  }
 
   @property({ type: String, attribute: 'content-selector' })
-  contentSelector?: string;
+  contentSelector = 'syntax-highlight-component';
+
+  @property({ type: String, attribute: 'theme' })
+  theme: Theme = 'light';
 
   private static _config: Config = configDefaults;
 
@@ -43,17 +69,17 @@ export default class SyntaxHighlightComponent extends LitElement {
     );
   }
 
-  #highlights = new Set<{ tokenType: string; range: Range }>();
-  #internals: ElementInternals;
+  private _highlights = new Set<{ tokenType: string; range: Range }>();
+  private _internals: ElementInternals;
 
   get highlights() {
-    return this.#highlights;
+    return this._highlights;
   }
 
   constructor() {
     super();
-    this.#internals = this.attachInternals();
-    this.#internals.role = 'code';
+    this._internals = this.attachInternals();
+    this._internals.role = 'code';
     setupTokenHighlights(configDefaults.tokenTypes, {
       languageTokens: configDefaults.languageTokens,
     });
@@ -66,13 +92,9 @@ export default class SyntaxHighlightComponent extends LitElement {
 
   connectedCallback() {
     super.connectedCallback();
-    if (!this.hasAttribute('tabindex')) {
-      this.setAttribute('tabindex', '0');
+    if (!this.contentElement.hasAttribute('tabindex')) {
+      this.contentElement.setAttribute('tabindex', '0');
     }
-  }
-
-  protected updated(): void {
-    this.paintTokenHighlights();
   }
 
   static styles = css`
@@ -88,69 +110,124 @@ export default class SyntaxHighlightComponent extends LitElement {
         'Liberation Mono', 'Courier New', monospace;
       line-height: 1.6;
     }
-    .my-class {
-      background: yellow;
-      padding: 8px;
+
+    :host([theme='light']) {
+      --comment-color: #586069;
+      --punctuation-color: #24292e;
+      --string-color: #e31a2c;
+      --keyword-color: #e31a2c;
+      --operator-color: #e31a2c;
+      --number-color: #0052cc;
+      --function-color: #8e44ad;
+      --tag-color: #1e7e34;
+      --attr-name-color: #8e44ad;
+      --attr-value-color: #032f62;
+      --boolean-color: #0052cc;
+      --property-color: #0052cc;
+      --selector-color: #1e7e34;
+      --atrule-color: #8e44ad;
+      --url-color: #032f62;
+      color: #24292e;
+    }
+
+    :host([theme='dark']) {
+      --comment-color: #9e9e9e;
+      --punctuation-color: #e0e0e0;
+      --string-color: #66bb6a;
+      --keyword-color: #64b5f6;
+      --operator-color: #e0e0e0;
+      --number-color: #a5d6a7;
+      --function-color: #42a5f5;
+      --tag-color: #64b5f6;
+      --attr-name-color: #4db6ac;
+      --attr-value-color: #66bb6a;
+      --boolean-color: #64b5f6;
+      --property-color: #4db6ac;
+      --selector-color: #f06292;
+      --atrule-color: #f06292;
+      --url-color: #9e9e9e;
+      color: #e0e0e0;
+    }
+
+    :host([theme='pink']) {
+      --comment-color: #e0e0e0;
+      --punctuation-color: #f8f8f2;
+      --string-color: #ff80c4;
+      --keyword-color: #ff79c6;
+      --operator-color: #f8f8f2;
+      --number-color: #bd93f9;
+      --function-color: #ff79c6;
+      --tag-color: #ff79c6;
+      --attr-name-color: #d1aaff;
+      --attr-value-color: #ff80c4;
+      --boolean-color: #bd93f9;
+      --property-color: #d1aaff;
+      --selector-color: #ff79c6;
+      --atrule-color: #ff79c6;
+      --url-color: #e0e0e0;
+      color: #f8f8f2;
     }
 
     ::highlight(comment) {
-      color: #d3d3d3; /* Light Gray */
+      color: var(--comment-color);
     }
     ::highlight(punctuation) {
-      color: #ffffff; /* White */
+      color: var(--punctuation-color);
     }
     ::highlight(string) {
-      color: #ffb6c1; /* Light Pink */
+      color: var(--string-color);
     }
     ::highlight(keyword) {
-      color: #ff69b4; /* Hot Pink */
+      color: var(--keyword-color);
     }
     ::highlight(operator) {
-      color: #9370db; /* Medium Purple */
+      color: var(--operator-color);
     }
     ::highlight(number) {
-      color: #ee82ee; /* Violet */
+      color: var(--number-color);
     }
     ::highlight(function) {
-      color: #9370db; /* Medium Purple */
+      color: var(--function-color);
     }
     ::highlight(tag) {
-      color: #c71585; /* Medium Violet Red */
+      color: var(--tag-color);
     }
     ::highlight(attr-name) {
-      color: #da70d6; /* Orchid */
+      color: var(--attr-name-color);
     }
     ::highlight(attr-value) {
-      color: #ffb6c1; /* Light Pink */
+      color: var(--attr-value-color);
     }
     ::highlight(boolean) {
-      color: #ee82ee; /* Violet */
+      color: var(--boolean-color);
     }
     ::highlight(property) {
-      color: #da70d6; /* Orchid */
+      color: var(--property-color);
     }
     ::highlight(selector) {
-      color: #800080; /* Purple */
+      color: var(--selector-color);
     }
     ::highlight(atrule) {
-      color: #ff69b4; /* Hot Pink */
+      color: var(--atrule-color);
     }
     ::highlight(url) {
-      color: #d3d3d3; /* Light Gray */
+      color: var(--url-color);
     }
   `;
 
   render() {
-    return html`<slot @slotchange=${this.paintTokenHighlights}></slot>`;
+    return html` <slot @slotchange=${this.paintTokenHighlights}></slot> `;
   }
 
-  paintTokenHighlights() {
+  async paintTokenHighlights() {
     this.clearTokenHighlights();
     if (!CSS.highlights) return;
 
     const text = this.contentElement.innerText;
-    const tokens =
-      SyntaxHighlightComponent._config.tokenize(text, this.language) || [];
+    const tokens = await SyntaxHighlightComponent._config.tokenize(
+      text,
+      this.language,
+    );
     const languageTokenTypes =
       SyntaxHighlightComponent._config.languageTokens?.[this.language] || [];
 
@@ -167,18 +244,18 @@ export default class SyntaxHighlightComponent extends LitElement {
           range.setEnd(this.contentElement.firstChild, pos + token.length);
 
           CSS.highlights.get(tokenType)?.add(range);
-          this.#highlights.add({ tokenType, range });
+          this._highlights.add({ tokenType, range });
         }
       }
       pos += token.length;
     }
   }
 
-  clearTokenHighlights() {
+  protected clearTokenHighlights() {
     if (!CSS.highlights) return;
     for (const highlight of this.highlights) {
       CSS.highlights.get(highlight.tokenType)?.delete(highlight.range);
-      this.#highlights.delete(highlight);
+      this._highlights.delete(highlight);
     }
   }
 }

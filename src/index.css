@@ -5,7 +5,7 @@
 
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  background-color: #1F2C3D;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -24,6 +24,7 @@ body {
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+  margin: 12px 0;
 }
 
 .card {
@@ -35,4 +36,38 @@ h1 {
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+}
+
+.card {
+  padding: 32px 8px;
+  border-radius: 16px;
+  background-color: #151b23;
+  min-width: 850px;
+
+  &.card--light {
+    background-color: #e1e1e1;
+    color: #151b23;
+  }
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.syntax-highlight-example {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.title{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 16px;
 }
