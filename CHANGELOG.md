@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Magda98/syntax-highlight-component/compare/v1.2.2...v1.3.0) (2025-08-22)
+
+
+### Features
+
+* support multiple text nodes ([31afa3d](https://github.com/Magda98/syntax-highlight-component/commit/31afa3d3649435b8d89215ca7c05981f7f98b23d))
+
 ## [1.2.2](https://github.com/Magda98/syntax-highlight-component/compare/v1.2.1...v1.2.2) (2025-08-22)
 
 
