@@ -1,5 +1,5 @@
-import 'syntax-highlight-component';
-import type SyntaxHighlightComponent from 'syntax-highlight-component';
+import '../src/syntax-highlight-component';
+import type SyntaxHighlightComponent from '../src/syntax-highlight-component';
 
 const code = `background: linear-gradient(200deg, #9d39e5, #dc454b, #ff1493);
 background-clip: text;`;

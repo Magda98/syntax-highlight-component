@@ -2,11 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/src/assets/favicon.ico" />
+    <link rel="icon" type="image/svg+xml" href="src/assets/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>syntax-highlight-component</title>
-    <link rel="stylesheet" href="./src/index.css" />
-    <script type="module" src="/src/syntax-highlight-component.js"></script>
+    <link rel="stylesheet" href="./dev/index.css" />
+    <script type="module" src="./dev/main.ts"></script>
   </head>
   <body>
     <div class="container">
@@ -14,37 +14,25 @@
         <img
           width="80px"
           height="80px"
-          src="./src/assets/syntax-highlight-component.png"
+          src="src/assets/syntax-highlight-component.png"
         />
         <h1>Syntax Highlight Component</h1>
       </div>
-      <div class="syntax-highlight-example">
-        <h3>Light Theme</h3>
-        <div class="card card--light">
-          <syntax-highlight-component language="css" theme="light">
-            background: linear-gradient(200deg, #9d39e5, #dc454b, #ff1493);
-            background-clip: text;
-          </syntax-highlight-component>
-        </div>
+      <div class="links">
+        <a
+          class="link"
+          href="https://github.com/Magda98/syntax-highlight-component"
+          target="_blank"
+          >GitHub Repository</a
+        >
+        <a
+          class="link"
+          href="https://www.npmjs.com/package/syntax-highlight-component"
+          target="_blank"
+          >npm package</a
+        >
       </div>
-      <div class="syntax-highlight-example">
-        <h3>Dark Theme</h3>
-        <div class="card">
-          <syntax-highlight-component language="css" theme="dark">
-            background: linear-gradient(200deg, #9d39e5, #dc454b, #ff1493);
-            background-clip: text;
-          </syntax-highlight-component>
-        </div>
-      </div>
-      <div class="syntax-highlight-example">
-        <h3>Pink Theme</h3>
-        <div class="card">
-          <syntax-highlight-component language="css" theme="pink">
-            background: linear-gradient(200deg, #9d39e5, #dc454b, #ff1493);
-            background-clip: text;
-          </syntax-highlight-component>
-        </div>
-      </div>
+      <div id="app"></div>
     </div>
   </body>
 </html>

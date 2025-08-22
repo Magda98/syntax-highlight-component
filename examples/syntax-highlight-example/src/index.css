@@ -75,3 +75,13 @@ h1 {
     text-decoration: underline;
   }
 }
+
+syntax-highlight-component {
+  outline: none;
+  padding: 8px;
+
+  &:focus-visible {
+    box-shadow: 0 0 0 2px #d1aaff;
+    border-radius: 4px;
+  }
+}
