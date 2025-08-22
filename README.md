@@ -11,6 +11,11 @@
 
 Give your code blocks a professional touch with minimal effort! 💡
 
+## Example
+
+[![Open in repo](https://img.shields.io/badge/github-pages?style=for-the-badge&logo=github&logoColor=white&color=black)](https://github.com/Magda98/syntax-highlight-component/tree/master/examples/syntax-highlight-example)
+[![Open in StackBlitz](https://img.shields.io/badge/Stackblitz-fff?style=for-the-badge&logo=stackblitz&logoColor=white&labelColor=%231374EF&color=%231374EF)](https://github.com/Magda98/syntax-highlight-component/tree/master/examples/syntax-highlight-example)
+
 ## Usage
 
 To use the component, import it in your HTML file and use the `<syntax-highlight-component>` tag:
