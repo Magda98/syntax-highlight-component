@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/Magda98/syntax-highlight-component/compare/v1.2.0...v1.2.1) (2025-08-22)
+
+
+### Bug Fixes
+
+* fix styles, remove unnecessary whitespaces in template ([d066409](https://github.com/Magda98/syntax-highlight-component/commit/d06640977b03606fe46e0251af2eb11249f38171))
+
 # [1.2.0](https://github.com/Magda98/syntax-highlight-component/compare/v1.1.1...v1.2.0) (2025-08-21)
 
 
