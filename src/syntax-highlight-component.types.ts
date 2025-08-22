@@ -1,7 +1,6 @@
 export type Config = {
   languages: Language[];
   tokenTypes: string[];
-  languageTokens: Record<string, string[]>;
   tokenize: (text: string, language: Language) => Promise<FlatToken[]>;
 };
 

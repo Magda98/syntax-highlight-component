@@ -5,8 +5,8 @@ import {
   type Language,
   type Theme,
 } from './syntax-highlight-component.types';
-import { setupTokenHighlights } from './cssHighlight';
 import { configDefaults } from './config';
+import { setupTokenHighlights } from './cssHighlight';
 
 /**
  * A web component for syntax highlighting code blocks using the CSS Custom Highlight API.
@@ -80,9 +80,7 @@ export default class SyntaxHighlightComponent extends LitElement {
     super();
     this._internals = this.attachInternals();
     this._internals.role = 'code';
-    setupTokenHighlights(configDefaults.tokenTypes, {
-      languageTokens: configDefaults.languageTokens,
-    });
+    setupTokenHighlights(configDefaults.tokenTypes);
   }
 
   get contentElement(): HTMLElement {
@@ -223,36 +221,30 @@ export default class SyntaxHighlightComponent extends LitElement {
     return html`<slot @slotchange=${this.paintTokenHighlights}></slot>`;
   }
 
-  async paintTokenHighlights() {
+  paintTokenHighlights() {
     this.clearTokenHighlights();
     if (!CSS.highlights) return;
 
-    const text = this.contentElement.innerText;
-    const tokens = await SyntaxHighlightComponent._config.tokenize(
-      text,
-      this.language,
-    );
-    const languageTokenTypes =
-      SyntaxHighlightComponent._config.languageTokens?.[this.language] || [];
+    this.contentElement.childNodes.forEach(async (node) => {
+      let pos = 0;
+      const tokens = await SyntaxHighlightComponent._config.tokenize(
+        node.textContent || '',
+        this.language,
+      );
+      for (const token of tokens) {
+        if (token.type) {
+          const range = new Range();
+          if (node && node.textContent?.length) {
+            range.setStart(node, pos);
+            range.setEnd(node, pos + token.length);
 
-    let pos = 0;
-    for (const token of tokens) {
-      if (token.type) {
-        const tokenType = languageTokenTypes.includes(token.type)
-          ? `${this.language}-${token.type}`
-          : token.type;
-
-        const range = new Range();
-        if (this.contentElement.firstChild) {
-          range.setStart(this.contentElement.firstChild, pos);
-          range.setEnd(this.contentElement.firstChild, pos + token.length);
-
-          CSS.highlights.get(tokenType)?.add(range);
-          this._highlights.add({ tokenType, range });
+            CSS.highlights.get(token.type)?.add(range);
+            this._highlights.add({ tokenType: token.type, range });
+          }
         }
+        pos += token.length;
       }
-      pos += token.length;
-    }
+    });
   }
 
   protected clearTokenHighlights() {
