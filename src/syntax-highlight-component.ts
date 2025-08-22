@@ -110,6 +110,9 @@ export default class SyntaxHighlightComponent extends LitElement {
         ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
         'Liberation Mono', 'Courier New', monospace;
       line-height: 1.6;
+      display: flex;
+      align-items: flex-start;
+      text-align: left;
     }
 
     :host([theme='light']) {
@@ -217,7 +220,7 @@ export default class SyntaxHighlightComponent extends LitElement {
   `;
 
   render() {
-    return html` <slot @slotchange=${this.paintTokenHighlights}></slot> `;
+    return html`<slot @slotchange=${this.paintTokenHighlights}></slot>`;
   }
 
   async paintTokenHighlights() {
