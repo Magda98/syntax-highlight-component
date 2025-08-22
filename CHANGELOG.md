@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/Magda98/syntax-highlight-component/compare/v1.2.1...v1.2.2) (2025-08-22)
+
+
+### Bug Fixes
+
+* fix example link ([35fd583](https://github.com/Magda98/syntax-highlight-component/commit/35fd583583878b7047a0437df2d3b016062e7997))
+
 ## [1.2.1](https://github.com/Magda98/syntax-highlight-component/compare/v1.2.0...v1.2.1) (2025-08-22)
 
 
