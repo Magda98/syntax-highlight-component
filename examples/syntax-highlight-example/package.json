@@ -8,6 +8,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
+  "stackblitz": {
+    "startCommand": "npm run install --no-package-lock && npm run dev"
+  },
   "devDependencies": {
     "typescript": "~5.8.3",
     "vite": "^7.1.2"
