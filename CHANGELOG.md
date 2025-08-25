@@ -1,3 +1,10 @@
+## [1.3.1](https://github.com/Magda98/syntax-highlight-component/compare/v1.3.0...v1.3.1) (2025-08-25)
+
+
+### Bug Fixes
+
+* fix types, add package lint script ([da6734b](https://github.com/Magda98/syntax-highlight-component/commit/da6734b107011b96fd1450f95d5ce17cc5b94fb4))
+
 # [1.3.0](https://github.com/Magda98/syntax-highlight-component/compare/v1.2.2...v1.3.0) (2025-08-22)
 
 
