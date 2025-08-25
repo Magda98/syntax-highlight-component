@@ -4,14 +4,14 @@ import dts from 'vite-plugin-dts';
 export default defineConfig({
   plugins: [
     dts({
-      insertTypesEntry: true,
+      outDir: ['dist'],
     }),
   ],
   build: {
     lib: {
       entry: 'src/syntax-highlight-component.ts',
       name: 'SyntaxHighlightComponent',
-      fileName: (format) => `syntax-highlight-component.${format}.js`,
+      fileName: () => `syntax-highlight-component.js`,
       formats: ['es'],
     },
     outDir: 'dist',
