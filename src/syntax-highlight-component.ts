@@ -4,7 +4,7 @@ import {
   type Config,
   type Language,
   type Theme,
-} from './syntax-highlight-component.types';
+} from './syntax-highlight-component.types.ts';
 import { configDefaults } from './config';
 import { setupTokenHighlights } from './cssHighlight';
 
