@@ -1,3 +1,10 @@
+## [1.3.2](https://github.com/Magda98/syntax-highlight-component/compare/v1.3.1...v1.3.2) (2025-09-03)
+
+
+### Bug Fixes
+
+* correct example startCommand ([bde2990](https://github.com/Magda98/syntax-highlight-component/commit/bde2990cefad267b1bd659923b9e9bc782edb060))
+
 ## [1.3.1](https://github.com/Magda98/syntax-highlight-component/compare/v1.3.0...v1.3.1) (2025-08-25)
 
 
