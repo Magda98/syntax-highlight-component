@@ -9,7 +9,8 @@
     "preview": "vite preview"
   },
   "stackblitz": {
-    "startCommand": "npm run install --no-package-lock && npm run dev"
+    "startCommand": "npm install --no-package-lock && npm run dev",
+    "installDependencies": false
   },
   "devDependencies": {
     "typescript": "~5.8.3",
