@@ -39,7 +39,7 @@ if (syntaxHighlightComponents) {
   // Update token highlights on input
   syntaxHighlightComponents.forEach((component) => {
     component.addEventListener('input', () => {
-      component.paintTokenHighlights();
+      component.updateTokenHighlights();
     });
   });
 }
