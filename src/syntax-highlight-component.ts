@@ -93,6 +93,7 @@ export default class SyntaxHighlightComponent extends LitElement {
     if (!this.contentElement.hasAttribute('tabindex')) {
       this.contentElement.setAttribute('tabindex', '0');
     }
+    SyntaxHighlightComponent.setStyles();
   }
 
   static styles = css`
@@ -169,60 +170,68 @@ export default class SyntaxHighlightComponent extends LitElement {
       --url-color: #e0e0e0;
       color: #f8f8f2;
     }
+  `;
 
-    ::highlight(comment) {
+  static setStyles() {
+    if (document.querySelector('.syntax-highlight-component-styles')) return;
+
+    const style = document.createElement('style');
+    style.classList.add('syntax-highlight-component-styles');
+    style.textContent = `
+    syntax-highlight-component::highlight(comment) {
       color: var(--comment-color);
     }
-    ::highlight(punctuation) {
+    syntax-highlight-component::highlight(punctuation) {
       color: var(--punctuation-color);
     }
-    ::highlight(string) {
+    syntax-highlight-component::highlight(string) {
       color: var(--string-color);
     }
-    ::highlight(keyword) {
+    syntax-highlight-component::highlight(keyword) {
       color: var(--keyword-color);
     }
-    ::highlight(operator) {
+    syntax-highlight-component::highlight(operator) {
       color: var(--operator-color);
     }
-    ::highlight(number) {
+    syntax-highlight-component::highlight(number) {
       color: var(--number-color);
     }
-    ::highlight(function) {
+    syntax-highlight-component::highlight(function) {
       color: var(--function-color);
     }
-    ::highlight(tag) {
+    syntax-highlight-component::highlight(tag) {
       color: var(--tag-color);
     }
-    ::highlight(attr-name) {
+    syntax-highlight-component::highlight(attr-name) {
       color: var(--attr-name-color);
     }
-    ::highlight(attr-value) {
+    syntax-highlight-component::highlight(attr-value) {
       color: var(--attr-value-color);
     }
-    ::highlight(boolean) {
+    syntax-highlight-component::highlight(boolean) {
       color: var(--boolean-color);
     }
-    ::highlight(property) {
+    syntax-highlight-component::highlight(property) {
       color: var(--property-color);
     }
-    ::highlight(selector) {
+    syntax-highlight-component::highlight(selector) {
       color: var(--selector-color);
     }
-    ::highlight(atrule) {
+    syntax-highlight-component::highlight(atrule) {
       color: var(--atrule-color);
     }
-    ::highlight(url) {
+    syntax-highlight-component::highlight(url) {
       color: var(--url-color);
     }
   `;
-
-  render() {
-    return html`<slot @slotchange=${this.paintTokenHighlights}></slot>`;
+    document.head.appendChild(style);
   }
 
-  paintTokenHighlights() {
-    this.clearTokenHighlights();
+  render() {
+    return html`<slot @slotchange=${this.updateTokenHighlights}></slot>`;
+  }
+
+  protected paintTokenHighlights() {
     if (!CSS.highlights) return;
 
     this.contentElement.childNodes.forEach(async (node) => {
@@ -249,10 +258,16 @@ export default class SyntaxHighlightComponent extends LitElement {
 
   protected clearTokenHighlights() {
     if (!CSS.highlights) return;
+
     for (const highlight of this.highlights) {
       CSS.highlights.get(highlight.tokenType)?.delete(highlight.range);
       this._highlights.delete(highlight);
     }
+  }
+
+  public updateTokenHighlights() {
+    this.clearTokenHighlights();
+    this.paintTokenHighlights();
   }
 }
 

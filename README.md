@@ -11,6 +11,8 @@
 
 Give your code blocks a professional touch with minimal effort! 💡
 
+**Note:** This component uses the native [HighlightRegistry](https://developer.mozilla.org/en-US/docs/Web/API/HighlightRegistry) and [::highlight](https://developer.mozilla.org/en-US/docs/Web/CSS/::highlight) selector. Check documentation for browser support.
+
 ## Example
 
 [![Open in repo](https://img.shields.io/badge/github-pages?style=for-the-badge&logo=github&logoColor=white&color=black)](https://github.com/Magda98/syntax-highlight-component/tree/master/examples/syntax-highlight-example)
