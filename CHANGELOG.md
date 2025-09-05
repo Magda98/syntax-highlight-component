@@ -1,3 +1,10 @@
+## [1.3.3](https://github.com/Magda98/syntax-highlight-component/compare/v1.3.2...v1.3.3) (2025-09-05)
+
+
+### Bug Fixes
+
+* change applaying styles to properly highlight syntax on Firefox ([7f2d5f4](https://github.com/Magda98/syntax-highlight-component/commit/7f2d5f4572d85945fa83b4f4f693033506f8eb39))
+
 ## [1.3.2](https://github.com/Magda98/syntax-highlight-component/compare/v1.3.1...v1.3.2) (2025-09-03)
 
 
